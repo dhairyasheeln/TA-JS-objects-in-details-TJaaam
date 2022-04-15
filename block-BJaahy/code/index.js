@@ -1,3 +1,4 @@
+/*
 # More about class
 
 - Create a class named `Square` which accepts one parameter `side` and will set two property `width` and `height` to the value of `side`.
@@ -17,11 +18,39 @@
 - Check the `area` getter method on both square.
 
 - Check the `isEqual` method and pass the two instance you created above.
+*/
 
 
+class Square{
+    constructor(side){
+        this.width=side;
+        this.height=side;
+    }
+    description(){
+        alert(`The square is ${this.width} x ${this.height}`);
+    }
+    calcArea(){
+        let area=this.width*this.height;
+        return area;
+    }
+    get area(){
+        return this.width*this.height;
+    }
+    set area(value){
+        this.width=Math.sqrt(value);
+        this.height=Math.sqrt(value);
+    }
 
-## User Class
+    static isEqual(squareOne,squareTwo){
+        return squareOne.calcArea()===squareTwo.calcArea();
+    }
+}
 
+let sOne=new Square(10);
+let sTwo=new Square(20);
+
+
+/*
 - Create a class named `User` that accepts `firstName` and `lastName` property
 
 - Create a getter method named `fullName` that will return the full name of the person.
@@ -39,3 +68,36 @@
 - Check the `fullName` using getter
 
 - Check the `nameContains` method
+*/
+
+class User{
+    constructor(firstName,lastName){
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
+
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`;
+    }
+    set fullName(name){
+        if(name.length<5){
+            alert(`Full name should be more than 5 characters`);
+        }
+        else{
+            let arr=name.split(' ');
+            this.firstName=arr[0];
+            this.lastName=arr[1];
+        }
+
+    }
+    nameContains(value){
+        return this.fullName.includes(value);
+    }
+}
+
+let userOne=new User('Arya','Stark');
+let userTwo=new User('Manish','Malhotra');
+
+
+
+
