@@ -72,7 +72,11 @@ function PersonConstructor() {
   // add code here
   this.greet=function(){
     console.log('Hello');
+  };
+  this.introduce=function(){
+    console.log(`Hi, my name is ${this.name}`);
   }
+
  }
 
 
@@ -84,16 +88,19 @@ simon.greet(); // -> Logs 'hello'
 
 function personFromConstructor(name, age) {
   // add code here
-  this.name=name;
-  this.age=age;
+  let person=new PersonConstructor();
+  person.name=name;
+  person.age=age;
+  return person;
 }
 
-var mike = personFromConstructor('Mike', 30);
+
+var mike =personFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(mike.name); // -> Logs 'Mike'
-// console.log(mike.age); //-> Logs 30
-// mike.greet(); //-> Logs 'hello'
+console.log(mike.name); // -> Logs 'Mike'
+console.log(mike.age); //-> Logs 30
+mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 // add code here
@@ -107,8 +114,11 @@ var mike = personFromConstructor('Mike', 30);
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-  constructor() {
-    // add code here
+  constructor(name) {
+    this.name=name;
+  }
+  greet(){
+    console.log('Hello');
   }
 
   // add code here
@@ -120,16 +130,25 @@ var george = new PersonClass();
 
 /*** CHALLENGE 2 of 3 ***/
 
-// add code here
+class DeveloperClass extends PersonClass{
+  constructor(name){
+    super(name);
+  }
+  introduce(){
+    console.log(`Hello World, my name is ${this.name}`)
+  }
+}
 
 // /********* Uncomment these lines to test your work! *********/
-// var thai = new DeveloperClass('Thai', 32);
-// console.log(thai.name); // -> Logs 'Thai'
-// thai.introduce(); //-> Logs 'Hello World, my name is Thai'
+var thai = new DeveloperClass('Thai', 32);
+console.log(thai.name); // -> Logs 'Thai'
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
 
 /****************************************************************
                       EXTENSION: SUBCLASSING
 ****************************************************************/
+
+
 
 var userFunctionStore = {
   sayType: function () {
@@ -145,10 +164,13 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore /* Put code here */;
+var adminFunctionStore=Object.create(userFunctionStore);
 
 function adminFactory(name, score) {
-  // Put code here
+  let obj=userFactory(name,score);
+  
+  obj.type='Admin';
+  return obj;
 }
 
 /* Put code here for a method called sharePublicMessage*/
