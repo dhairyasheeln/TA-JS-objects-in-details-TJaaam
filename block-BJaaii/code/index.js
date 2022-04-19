@@ -1,6 +1,6 @@
 class Stack{
-    constructor(stack){
-        this.stack=stack;
+    constructor(){
+        this.stack=[];
     }
     push(value){
         this.stack.push(value);
@@ -12,20 +12,14 @@ class Stack{
         return this.stack[index];
     }
     reverse(){
-        let reverse=[];
-        for(let i=this.stack.length-1;i>=0;i--){
-            reverse.push(this.stack[i]);
-        }
-        return reverse;
+        return this.stack.reverse();
     }
     isEmpty(){
-        return (this.stack.length===0)
+        return (this.stack.length==0)
     }
     displayStack(){
         
-        for(let i=0;i<this.stack.length;i++){
-            console.log(this.stack[i].toString());
-        }
+        return this.stack.join(" ");
     }
     get length(){
         return this.stack.length;
@@ -64,21 +58,18 @@ class Queue{
         this.queue=queue;
     }
     enqueue(item){
-        this.queue.unshift(item);
+        this.queue.push(item);
+        return this.queue;
     }
     dequeue(){
-        this.queue.shift();
-    }
-    peek(index=this.queue.length-1){
-        return (this.queue[index]);
+        this.queue.splice(0,1);
+        return this.queue;
     }
     isEmpty(){
         return (this.queue.length==0)
     }
     displayQueue(){
-        for(let i=this.queue.length;i>=0;i--){
-            console.log(this.queue[i]);
-        }
+        return this.queue.join(" "); 
     }
     get length(){
         return this.queue.length;
