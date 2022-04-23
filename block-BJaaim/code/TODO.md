@@ -28,6 +28,10 @@ This method will decide how the UI of a question look like. Calling this functio
 
 DATA:
 
+
+
+
+
 - allQuestions
   Collection of Questions. An array with multiple question.
 - activeIndex
